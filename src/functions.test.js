@@ -1,8 +1,5 @@
 /*
-
-
-
-   Welcome to JS Interation
+   Welcome to JS Iteration
 
    Down below you will find instructions for code to write.
 
@@ -13,55 +10,22 @@
 
    Once you finish a function and have it correct, the test will tell you if/how
    the next function is working.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
+ */
 
 /**
  * Define a function named `yelling` that takes an array of
  * strings as an argument and returns a new array with all
  * the words forced to uppercase
  *
- * Example:
- *
- * const yelling = (array) => {
- *    // your code here
- * }
- */
+  Example:**/
+
+const yelling = string => {
+  let ret = []
+  string.map(word => {
+    ret.push(word.toUpperCase())
+  })
+  return ret
+}
 
 // ...
 
@@ -72,7 +36,12 @@
  * the numbers multiplied by 2
  */
 
-// ...
+const doubleTrouble = numbers => {
+  let ret = numbers.map(number => {
+    return number * 2
+  })
+  return ret
+}
 
 /*
  * Define a function stringyIndexes() that takes an array of
@@ -80,21 +49,40 @@
  * suffixed with " is at index X" where X is the index of the element
  */
 
-// ...
-
+const stringyIndexes = strings => {
+  let ret = []
+  ret = strings.map(string => {
+    return string + ' is at index ' + strings.indexOf(string)
+  })
+  return ret
+}
 /*
  * Define a function onlyTheEvenSurvive that accepts an array of
  * numbers and returns only the elements that are even
  */
 
-// ...
+const onlyTheEvenSurvive = numbers => {
+  let evens = numbers.filter(number => {
+    if (number % 2 === 0) {
+      return number
+    }
+  })
+  return evens
+}
 
 /*
  * Define a function onlyTheEvenIndexedSurvive that accepts an array of
  * numbers and returns only the elements at indexes that are even
  */
 
-// ...
+const onlyTheEvenIndexedSurvive = numbers => {
+  let evenIndexed = numbers.filter((number, index) => {
+    if (index % 2 === 0) {
+      return true
+    }
+  })
+  return evenIndexed
+}
 
 /*
  * Define a function bestMoviesOfTheYear that accepts an array of
@@ -110,7 +98,15 @@
  * }
  */
 
-// ...
+const bestMoviesOfTheYear = (movies, year) => {
+  return movies
+    .filter(movie => {
+      return movie.score > 90.0 && movie.year === year
+    })
+    .map(movie => {
+      return movie.name
+    })
+}
 
 /*
  * Define a function everyoneIsOdd that accepts an array of
@@ -118,15 +114,26 @@
  * odd.
  */
 
-// ...
+//  t.is(everyoneIsOdd([9, 15, 27, 101, 33]), true)
 
+const everyoneIsOdd = numbers => {
+  let ret = numbers.reduce((total, number) => {
+    return total % 2 === 1 && number % 2 === 1
+  })
+  return ret
+}
 /*
  * Define a function findTheNeedle that accepts an array of
  * strings and returns the one string that contains the word
  * `needle` inside
  */
 
-// ...
+const findTheNeedle = strings => {
+  let ret = strings.filter(string => {
+    return string.indexOf('needle') !== -1
+  })
+  return ret[0]
+}
 
 /*
  * Define a function findTheNeedleIndex that accepts an array of
@@ -134,15 +141,33 @@
  *  the word `needle` inside
  */
 
-// ...
-
+const findTheNeedleIndex = strings => {
+  const ret = strings
+    .map((string, index) => {
+      return string.indexOf('needle') !== -1 ? index : 0
+    })
+    .reduce((total, number) => {
+      return 0 + total + number
+    })
+  return ret
+}
 /*
  * Define a function someoneToLove that accepts an array of
  * strings and returns true if at least one string is exactly
  * four characters long
  */
 
-// ...
+const someoneToLove = strings => {
+  let ret = strings.reduce((total, num) => {
+    if (typeof total === 'boolean') {
+      return total || num.length === 4
+    } else {
+      return total.length === 4 || num.length === 4
+    }
+  })
+
+  return ret
+}
 
 /*
  * Define a function mapYourself that accepts an array of
@@ -153,7 +178,13 @@
  * So no using forEach, map, filter, reduce, etc.
  */
 
-// ...
+const mapYourself = numbers => {
+  let ret = Array(numbers.length)
+  for (let i = 0; i < numbers.length; i++) {
+    ret[i] = numbers[i] * 2
+  }
+  return ret
+}
 
 /*
  * Define a function filterYourself that accepts an
@@ -165,7 +196,15 @@
  * So no using forEach, map, filter, reduce, etc.
  */
 
-// ...
+const filterYourself = numbers => {
+  let ret = []
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 === 0) {
+      ret.push(numbers[i])
+    }
+  }
+  return ret
+}
 
 /*
  * Define a function everyYourself that accepts an
@@ -177,7 +216,15 @@
  * So no using forEach, map, filter, reduce, etc.
  */
 
-// ...
+const everyYourself = numbers => {
+  let ret = true
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 === 1) {
+      ret = false
+    }
+  }
+  return ret
+}
 
 /**
  * NOTE: Don't modify anything below this line...
@@ -189,7 +236,9 @@ import test from 'ava'
 
 const ensureDefined = (t, method) => {
   if (eval(`typeof ${method}`) !== 'function') {
-    t.fail(`\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`)
+    t.fail(
+      `\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`
+    )
   }
 }
 
